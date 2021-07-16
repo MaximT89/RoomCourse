@@ -19,9 +19,42 @@ public class User {
     @ColumnInfo(name = "city")
     public String mUserCity;
 
-    public User(String mUserName, int mUserAge, String mUserCity) {
+    public User(int id, String mUserName, int mUserAge, String mUserCity) {
+        this.id = id;
         this.mUserName = mUserName;
         this.mUserAge = mUserAge;
+        this.mUserCity = mUserCity;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getmUserName() {
+        return mUserName;
+    }
+
+    public void setmUserName(String mUserName) {
+        this.mUserName = mUserName;
+    }
+
+    public int getmUserAge() {
+        return mUserAge;
+    }
+
+    public void setmUserAge(int mUserAge) {
+        this.mUserAge = mUserAge;
+    }
+
+    public String getmUserCity() {
+        return mUserCity;
+    }
+
+    public void setmUserCity(String mUserCity) {
         this.mUserCity = mUserCity;
     }
 }
