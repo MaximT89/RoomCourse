@@ -19,13 +19,6 @@ public class User {
     @ColumnInfo(name = "city")
     public String mUserCity;
 
-    public User(int id, String mUserName, int mUserAge, String mUserCity) {
-        this.id = id;
-        this.mUserName = mUserName;
-        this.mUserAge = mUserAge;
-        this.mUserCity = mUserCity;
-    }
-
     public int getId() {
         return id;
     }
@@ -56,5 +49,15 @@ public class User {
 
     public void setUserCity(String mUserCity) {
         this.mUserCity = mUserCity;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", mUserName='" + mUserName + '\'' +
+                ", mUserAge=" + mUserAge +
+                ", mUserCity='" + mUserCity + '\'' +
+                '}';
     }
 }
