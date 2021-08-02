@@ -1,9 +1,6 @@
 package com.example.roomcourse;
 
 import androidx.room.Dao;
-import androidx.room.Insert;
-import androidx.room.OnConflictStrategy;
-import androidx.room.Query;
 import androidx.room.Transaction;
 
 import java.util.List;
@@ -16,5 +13,4 @@ public abstract class UserDao implements BaseDao {
         insertUser(user);
         return getAllUser();
     }
-
 }
