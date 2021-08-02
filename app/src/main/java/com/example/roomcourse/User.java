@@ -34,27 +34,27 @@ public class User {
         this.id = id;
     }
 
-    public String getmUserName() {
+    public String getUserName() {
         return mUserName;
     }
 
-    public void setmUserName(String mUserName) {
+    public void setUserName(String mUserName) {
         this.mUserName = mUserName;
     }
 
-    public int getmUserAge() {
+    public int getUserAge() {
         return mUserAge;
     }
 
-    public void setmUserAge(int mUserAge) {
+    public void setUserAge(int mUserAge) {
         this.mUserAge = mUserAge;
     }
 
-    public String getmUserCity() {
+    public String getUserCity() {
         return mUserCity;
     }
 
-    public void setmUserCity(String mUserCity) {
+    public void setUserCity(String mUserCity) {
         this.mUserCity = mUserCity;
     }
 }
