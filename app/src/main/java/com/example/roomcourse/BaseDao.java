@@ -16,6 +16,15 @@ public interface BaseDao {
     @Query("SELECT * FROM users WHERE id = :id")
     User getUserById(long id);
 
+    @Query("SELECT * FROM users WHERE id IN (:isList)")
+    List<User> getUsersByIdList(List<Long> isList);
+
+    @Query("SELECT * FROM users WHERE age > :age")
+    List<User> getUsersByAge(int age);
+
+    @Query("SELECT * FROM users WHERE age BETWEEN :minAge AND :maxAge")
+    List<User> getUsersByAge(int minAge, int maxAge);
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertUser(User user);
 
