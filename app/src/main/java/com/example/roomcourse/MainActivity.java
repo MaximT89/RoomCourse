@@ -7,9 +7,8 @@ import android.view.LayoutInflater;
 
 import com.example.roomcourse.databinding.ActivityMainBinding;
 
-import java.util.List;
-
 public class MainActivity extends AppCompatActivity {
+
     private ActivityMainBinding binding;
 
     @Override
@@ -18,9 +17,8 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(LayoutInflater.from(this));
         setContentView(binding.getRoot());
 
+        
 
 
     }
-
-
 }
