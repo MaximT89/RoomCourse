@@ -53,11 +53,11 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", mUserName='" + mUserName + '\'' +
-                ", mUserAge=" + mUserAge +
-                ", mUserCity='" + mUserCity + '\'' +
-                '}';
+        return "Пользователь c " +
+                "id : " + id +
+                ", Имя : " + mUserName +
+                ", Возраст : " + mUserAge +
+                ", Город : " + mUserCity +
+                ";";
     }
 }
