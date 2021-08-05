@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(LayoutInflater.from(this));
         setContentView(binding.getRoot());
+        binding.textResult.setMovementMethod(new ScrollingMovementMethod());
 
         binding.btnSave.setOnClickListener(v -> {
             User user = new User();
@@ -28,10 +29,23 @@ public class MainActivity extends AppCompatActivity {
             user.setUserAge(Integer.parseInt(binding.editAge.getText().toString()));
             user.setUserCity(binding.editCity.getText().toString());
 
-            App.getInstance()
+//            App.getInstance()
+//                    .getDatabase()
+//                    .userDao()
+//                    .insertUser(user);
+
+            List<User> users = App.getInstance()
                     .getDatabase()
                     .userDao()
-                    .insertUser(user);
+                    .insertAndGetAllUsers(user);
+
+            StringBuilder sb = new StringBuilder();
+
+            for (User user1 : users) {
+                sb.append(user1.toString()).append("\n\n");
+            }
+
+            binding.textResult.setText(sb);
         });
 
         binding.btnUpdate.setOnClickListener(v -> {
@@ -56,8 +70,6 @@ public class MainActivity extends AppCompatActivity {
                     .userDao()
                     .deleteUser(user);
         });
-
-        binding.textResult.setMovementMethod(new ScrollingMovementMethod());
 
         binding.btnFindUser.setOnClickListener(v -> {
 
@@ -90,7 +102,6 @@ public class MainActivity extends AppCompatActivity {
 //            }
 
         });
-
 
 
     }
