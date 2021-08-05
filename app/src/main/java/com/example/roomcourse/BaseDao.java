@@ -8,13 +8,16 @@ import androidx.room.Update;
 
 import java.util.List;
 
+import io.reactivex.rxjava3.core.Completable;
+import io.reactivex.rxjava3.core.Single;
+
 public interface BaseDao {
 
     @Query("SELECT * FROM users")
     List<User> getAllUser();
 
     @Query("SELECT * FROM users WHERE id = :id")
-    User getUserById(long id);
+    Single<User> getUserById(long id);
 
     @Query("SELECT * FROM users WHERE id IN (:isList)")
     List<User> getUsersByIdList(List<Long> isList);
@@ -26,12 +29,11 @@ public interface BaseDao {
     List<User> getUsersByAge(int minAge, int maxAge);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertUser(User user);
+    Completable insertUser(User user);
 
     @Update
-    void updateUser(User user);
+    Completable updateUser(User user);
 
     @Delete
-    void deleteUser(User user);
-
+    Completable deleteUser(User user);
 }
