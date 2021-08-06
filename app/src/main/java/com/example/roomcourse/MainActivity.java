@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 
 import com.example.roomcourse.databinding.ActivityMainBinding;
 
+import java.util.List;
 import java.util.Objects;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -101,29 +102,65 @@ public class MainActivity extends AppCompatActivity {
                     });
         });
 
-        binding.btnFindUser.setOnClickListener(v -> App.getInstance()
-                .getDatabase()
-                .userDao()
-                .getUserById(Long.parseLong(binding.editId.getText().toString()))
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new DisposableSingleObserver<User>() {
-                    @Override
-                    public void onSuccess(@NonNull User user) {
-                        binding.textResult.setText(user.toString());
-                    }
+        binding.btnFindUser.setOnClickListener(v -> {
 
-                    @Override
-                    public void onError(@NonNull Throwable e) {
-                        e.printStackTrace();
+            App.getInstance()
+                    .getDatabase()
+                    .userDao()
+                    .getUsersByAge(Integer.parseInt(binding.editAge.getText().toString()))
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new DisposableSingleObserver<List<User>>() {
+                        @Override
+                        public void onSuccess(@NonNull List<User> users) {
 
-                        if(e instanceof EmptyResultSetException)
-                            binding.textResult.setText("Пользователи не найдены");
-                        else
+                            if(users.size() != 0){
+                                StringBuilder sb = new StringBuilder();
+
+                                for(User user : users){
+                                    sb.append(user.toString()).append("\n\n");
+                                }
+
+                                binding.textResult.setText(sb);
+
+                            } else {
+                                binding.textResult.setText("Пользователей с таким возрастом не найдено");
+                            }
+                        }
+
+                        @Override
+                        public void onError(@NonNull Throwable e) {
+                            e.printStackTrace();
                             binding.textResult.setText("Ошибка");
+                        }
+                    });
 
-                    }
-                }));
+
+//            App.getInstance()
+//                    .getDatabase()
+//                    .userDao()
+//                    .getUserById(Long.parseLong(binding.editId.getText().toString()))
+//                    .subscribeOn(Schedulers.io())
+//                    .observeOn(AndroidSchedulers.mainThread())
+//                    .subscribe(new DisposableSingleObserver<User>() {
+//                        @Override
+//                        public void onSuccess(@NonNull User user) {
+//                            binding.textResult.setText(user.toString());
+//                        }
+//
+//                        @Override
+//                        public void onError(@NonNull Throwable e) {
+//                            e.printStackTrace();
+//
+//                            if (e instanceof EmptyResultSetException)
+//                                binding.textResult.setText("Пользователи не найдены");
+//                            else
+//                                binding.textResult.setText("Ошибка");
+//                        }
+//                    });
+
+
+        });
 
     }
 }
